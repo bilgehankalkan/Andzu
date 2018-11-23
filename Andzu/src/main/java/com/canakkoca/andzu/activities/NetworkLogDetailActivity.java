@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.canakkoca.andzu.R;
+import com.canakkoca.andzu.base.BaseActivity;
 import com.canakkoca.andzu.base.NetworkLog;
 import com.google.gson.Gson;
 
@@ -22,7 +23,7 @@ import java.util.Locale;
 /**
  * Created by can.akkoca on 4/13/2017.
  */
-public class NetworkLogDetailActivity extends AppCompatActivity {
+public class NetworkLogDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

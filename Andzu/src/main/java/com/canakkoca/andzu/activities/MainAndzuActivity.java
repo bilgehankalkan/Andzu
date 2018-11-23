@@ -1,4 +1,4 @@
-package com.canakkoca.andzu.base;
+package com.canakkoca.andzu.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.canakkoca.andzu.R;
+import com.canakkoca.andzu.base.BaseActivity;
 import com.canakkoca.andzu.fragments.AppLogsFragment;
 import com.canakkoca.andzu.fragments.NetworkLogsFragment;
 
@@ -20,7 +21,7 @@ import java.util.List;
  * Created by can.akkoca on 4/13/2017.
  */
 
-public class MainAndzuActivity extends AppCompatActivity {
+public class MainAndzuActivity extends BaseActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
