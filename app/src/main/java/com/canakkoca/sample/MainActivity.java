@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        App.getInstance().disableAndzu();
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
             //If the draw over permission is not available open the settings screen
             //to grant the permission.
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, 2084);
         } else {
-            App.getInstance().initAndzu();
+            App.getInstance().getAndzu().initAndzu();
         }
 
         final OkHttpClient client = new OkHttpClient.Builder()
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 2084) {
             //Check if the permission is granted or not.
             if (resultCode == RESULT_OK) {
-                App.getInstance().initAndzu();
+                App.getInstance().getAndzu().initAndzu();
             } else { //Permission is not available
             }
         } else {
