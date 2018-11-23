@@ -25,8 +25,8 @@ public class Logger {
 
     private static final String TAG = "Logger";
 
-    public static void init(Application application) {
-        daoSession = ((AndzuApp)application).getDaoSession();
+    public static void init(AndzuApp application) {
+        daoSession = application.getDaoSession();
         appLogDao = daoSession.getAppLogDao();
     }
 

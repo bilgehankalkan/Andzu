@@ -46,14 +46,13 @@ public class AppLogsFragment extends Fragment {
         appRecyleView = (RecyclerView) view.findViewById(R.id.list_applogs);
 
 
-        DaoSession daoSession = ((AndzuApp)getActivity().getApplication()).getDaoSession();
+        DaoSession daoSession = AndzuApp.getAndzuApp().getDaoSession();
         appLogDao = daoSession.getAppLogDao();
 
         appRecyleView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity()
-                .getApplicationContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(AndzuApp.getAndzuApp().getApplication());
         appRecyleView.setLayoutManager(mLayoutManager);
-        appRecyleView.addItemDecoration(new DividerItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));
+        appRecyleView.addItemDecoration(new DividerItemDecoration(AndzuApp.getAndzuApp().getApplication(),LinearLayoutManager.VERTICAL));
 
 
         appLogQuery = appLogDao.queryBuilder().orderDesc(AppLogDao.Properties.Id).build();

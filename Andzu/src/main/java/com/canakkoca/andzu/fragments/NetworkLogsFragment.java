@@ -47,14 +47,13 @@ public class NetworkLogsFragment extends Fragment {
 
         networkRecyleView = (RecyclerView) view.findViewById(R.id.list_networklogs);
 
-        DaoSession daoSession = ((AndzuApp)getActivity().getApplication()).getDaoSession();
+        DaoSession daoSession = AndzuApp.getAndzuApp().getDaoSession();
         networkLogDao = daoSession.getNetworkLogDao();
 
         networkRecyleView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity()
-                .getApplicationContext());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(AndzuApp.getAndzuApp().getApplication());
         networkRecyleView.setLayoutManager(mLayoutManager);
-        networkRecyleView.addItemDecoration(new DividerItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));
+        networkRecyleView.addItemDecoration(new DividerItemDecoration(AndzuApp.getAndzuApp().getApplication(),LinearLayoutManager.VERTICAL));
 
         networkLogQuery = networkLogDao.queryBuilder().orderDesc(NetworkLogDao.Properties.Id).build();
 
@@ -62,11 +61,11 @@ public class NetworkLogsFragment extends Fragment {
         adapter = new NetworkLogAdapter(networkLogs);
 
         networkRecyleView.addOnItemTouchListener(new RecyclerTouchListener(
-                getActivity().getApplicationContext()
+                AndzuApp.getAndzuApp().getApplication()
                 , networkRecyleView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Intent intent = new Intent(getActivity().getApplicationContext()
+                Intent intent = new Intent(AndzuApp.getAndzuApp().getApplication()
                         ,NetworkLogDetailActivity.class);
                 intent.putExtra("networkLog",networkLogs.get(position));
                 startActivity(intent);
