@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.canakkoca.andzu.base.AndzuApp;
 import com.canakkoca.andzu.utils.Logger;
 import com.canakkoca.andzu.utils.LoggingInterceptor;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, 2084);
         } else {
-            App.getInstance().getAndzu().initAndzu();
+            AndzuApp.getAndzuApp().initAndzu();
         }
 
         final OkHttpClient client = new OkHttpClient.Builder()
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 2084) {
             //Check if the permission is granted or not.
             if (resultCode == RESULT_OK) {
-                App.getInstance().getAndzu().initAndzu();
+                AndzuApp.getAndzuApp().initAndzu();
             } else { //Permission is not available
             }
         } else {

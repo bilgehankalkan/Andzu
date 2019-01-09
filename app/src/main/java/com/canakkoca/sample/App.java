@@ -3,6 +3,10 @@ package com.canakkoca.sample;
 import android.app.Application;
 
 import com.canakkoca.andzu.base.AndzuApp;
+import com.canakkoca.andzu.base.DaoMaster;
+import com.canakkoca.andzu.base.DaoSession;
+
+import org.greenrobot.greendao.database.Database;
 
 /**
  * Created by can.akkoca on 4/12/2017.
@@ -10,28 +14,29 @@ import com.canakkoca.andzu.base.AndzuApp;
 
 public class App extends Application {
 
-    private AndzuApp andzu;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        andzu = AndzuApp.init(this);
-        sInstance = this;
-    }
-
     private static App sInstance;
+
+    public static void initAndzu() {
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(getInstance(), "andzu-db");
+        Database db = helper.getWritableDb();
+        DaoSession daoSession = new DaoMaster(db).newSession();
+        AndzuApp.init(getInstance(), daoSession);
+    }
 
     public static App getInstance() {
         return sInstance;
     }
 
-    public AndzuApp getAndzu() {
-        return andzu;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        sInstance = this;
+        initAndzu();
     }
 
     @Override
     public void onTerminate() {
-        AndzuApp.getAndzuApp().onTerminate();
+        AndzuApp.onTerminate();
         super.onTerminate();
     }
 }
